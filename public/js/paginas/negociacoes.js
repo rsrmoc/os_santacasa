@@ -1,5 +1,4 @@
 /******/ (() => { // webpackBootstrap
-var __webpack_exports__ = {};
 /*!*********************************************!*\
   !*** ./resources/js/paginas/negociacoes.js ***!
   \*********************************************/
@@ -261,7 +260,7 @@ Alpine.data('app', function () {
       });
     },
     deleteBoletoNegociacao: function deleteBoletoNegociacao(cdNegociacaoBoleto) {
-      var _this10 = this;
+      var _this0 = this;
       Swal.fire({
         title: 'Confirmação',
         text: "Tem certeza que deseja remover esse boleto?",
@@ -274,22 +273,22 @@ Alpine.data('app', function () {
       }).then(function (result) {
         if (result.isConfirmed) {
           axios["delete"]("".concat(API_URL, "/negociacao-boleto/").concat(cdNegociacaoBoleto)).then(function (res) {
-            var indexBoletoNegociacao = _this10.negociacaoSelecionada.boletos.findIndex(function (boleto) {
+            var indexBoletoNegociacao = _this0.negociacaoSelecionada.boletos.findIndex(function (boleto) {
               return boleto.cd_negociacao_boleto == cdNegociacaoBoleto;
             });
-            _this10.negociacaoSelecionada.boletos.splice(indexBoletoNegociacao, 1);
+            _this0.negociacaoSelecionada.boletos.splice(indexBoletoNegociacao, 1);
             toastr['success'](res.data.message);
           })["catch"](function (err) {
             return parseErrorsAPI(err.response.data.errors);
           })["finally"](function () {
-            return _this10.loadingBoletoNegociacao = false;
+            return _this0.loadingBoletoNegociacao = false;
           });
         }
       });
     },
     enviarHistorico: function enviarHistorico() {},
     cadastrarHistorico: function cadastrarHistorico() {
-      var _this11 = this;
+      var _this1 = this;
       this.loadingFormHistorico = true;
       if (this.editCDHistorico) {
         var _data = {
@@ -297,16 +296,16 @@ Alpine.data('app', function () {
           historico: this.inputFormHistorico
         };
         axios.put("".concat(API_URL, "/historico-cliente"), _data).then(function (res) {
-          var indexHistorico = _this11.historicosCliente.findIndex(function (historico) {
-            return historico.cd_historico == _this11.editCDHistorico;
+          var indexHistorico = _this1.historicosCliente.findIndex(function (historico) {
+            return historico.cd_historico == _this1.editCDHistorico;
           });
-          _this11.historicosCliente[indexHistorico] = res.data.historico;
-          _this11.clearEdicaoHistorico();
+          _this1.historicosCliente[indexHistorico] = res.data.historico;
+          _this1.clearEdicaoHistorico();
           toastr['success'](res.data.message);
         })["catch"](function (err) {
           return parseErrorsAPI(err.response.data.errors);
         })["finally"](function () {
-          return _this11.loadingFormHistorico = false;
+          return _this1.loadingFormHistorico = false;
         });
         return;
       }
@@ -315,13 +314,13 @@ Alpine.data('app', function () {
         historico: this.inputFormHistorico
       };
       axios.post("".concat(API_URL, "/historico-cliente"), data).then(function (res) {
-        _this11.historicosCliente.push(res.data.historico);
-        _this11.inputFormHistorico = null;
+        _this1.historicosCliente.push(res.data.historico);
+        _this1.inputFormHistorico = null;
         toastr['success'](res.data.message);
       })["catch"](function (err) {
         return parseErrorsAPI(err.response.data.errors);
       })["finally"](function () {
-        return _this11.loadingFormHistorico = false;
+        return _this1.loadingFormHistorico = false;
       });
     },
     setEdicaoHistorico: function setEdicaoHistorico(historico) {
@@ -333,7 +332,7 @@ Alpine.data('app', function () {
       this.inputFormHistorico = null;
     },
     excluirHistorico: function excluirHistorico(cdHistorico) {
-      var _this12 = this;
+      var _this10 = this;
       Swal.fire({
         title: 'Confirmação',
         text: "Tem certeza que deseja remover esse historico?",
@@ -346,15 +345,15 @@ Alpine.data('app', function () {
       }).then(function (result) {
         if (result.isConfirmed) {
           axios["delete"]("".concat(API_URL, "/historico-cliente/").concat(cdHistorico)).then(function (res) {
-            var indexHistorico = _this12.historicosCliente.findIndex(function (historico) {
+            var indexHistorico = _this10.historicosCliente.findIndex(function (historico) {
               return historico.cd_historico == cdHistorico;
             });
-            _this12.historicosCliente.splice(indexHistorico, 1);
+            _this10.historicosCliente.splice(indexHistorico, 1);
             toastr['success'](res.data.message);
           })["catch"](function (err) {
             return parseErrorsAPI(err.response.data.errors);
           })["finally"](function () {
-            return _this12.loadingBoletoNegociacao = false;
+            return _this10.loadingBoletoNegociacao = false;
           });
         }
       });

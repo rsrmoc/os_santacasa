@@ -5,7 +5,7 @@
 <head>
 
     <!-- Title -->
-    <title>Amaral | Login </title>
+    <title>Ordem de Serviço | Login </title>
 
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <meta charset="UTF-8">
@@ -71,8 +71,7 @@
                             <form class="m-t-md" style="margin-top: 10px;" action="{{ route('login-action') }}" method="post">
                                 @csrf
                                 <div class="form-group">
-                                    <input type="email" class="form-control" name="email" placeholder="Email"
-                                        required>
+                                    <input type="text" class="form-control" name="email" placeholder="Usuario" required>
                                 </div>
 
                                 <div class="form-group">

@@ -22,16 +22,18 @@ class UserPermissions
 
         if ($usuario->admin) return $next($request);
 
-        $verificarRotas = ['usuarios', 'setores'];
+        $verificarRotas = ['usuarios', 'setores','chamados'];
 
         $rotaAtual = Route::currentRouteName();
         $permissaoRota = substr(Route::currentRouteName(), 0, strpos(Route::currentRouteName(), "-") === false ? null : strpos(Route::currentRouteName(), "-"));
-
+        
         if (in_array($permissaoRota, $verificarRotas) || $usuario->existPermissao($permissaoRota)) {
             
+
             if (str_ends_with($rotaAtual, "listar") && !$usuario->isPermissao($permissaoRota, 'ver')) {
                 return redirect()->route('home')->withErrors(['error' => 'Você não tem permissão de acesso!']);
             }
+
 
             if ((str_ends_with($rotaAtual, "criar") || str_ends_with($rotaAtual, "store") ||
                 str_ends_with($rotaAtual, "editar") || str_ends_with($rotaAtual, "update")) &&
@@ -40,11 +42,16 @@ class UserPermissions
                 return redirect()->route('home')->withErrors(['error' => 'Você não tem permissão de acesso!']);
             }
 
+            
+
+
             if ((str_contains($rotaAtual, "excluir") || str_contains($rotaAtual, "destroy")) && !$usuario->isPermissao($permissaoRota, 'excluir')) {
                 return redirect()->route('home')->withErrors(['error' => 'Você não tem permissão de acesso!']);
             }
-        }
 
+
+        }
+       
         return $next($request);
     }
 }

@@ -1,0 +1,212 @@
+<x-layout.acma.layout>
+    <div class="page-title">
+        <h3>Cadastrar Usuário</h3>
+        <div class="page-breadcrumb">
+            <ol class="breadcrumb">
+                <li><a href="{{ route('usuarios-listar') }}">Relação</a></li>
+            </ol>
+        </div>
+    </div>
+
+    <div id="main-wrapper" x-data="app">
+
+        <template x-if="loading">
+            <x-loader_carregando />
+        </template>
+
+        <div class="col-md-12 ">
+            <form x-on:submit.prevent="storeUsuario" id="formStoreUser" method="POST" class="panel panel-white">
+                @csrf
+
+                <div class="panel-body">
+                    
+                    <div class="row">
+                        <div class="col-md-2">
+                            <div class="form-group @if($errors->has('usuario')) has-error @endif ">
+                                <label for="fname">Usuario de Acesso: <span class="red normal">*</span></label>
+                                <input type="text" class="form-control" value="{{old('email')}}" @blur="UserMv()" x-model="usuario_mv" 
+                                placeholder="Usuario MV" name="usuario" required />
+                               
+                                @if($errors->has('usuario'))
+                                    <div class="error">{{ $errors->first('usuario') }} </div>
+                                @endif
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-3">
+                            <div class="form-group @if($errors->has('nome')) has-error @endif ">
+                                <label for="fname">Nome do Usuário: <span class="red normal">*</span></label>
+                                <input type="text" class="form-control" placeholder="Nome" name="nome" value="{{old('nome')}}" x-model="nm_usuario_mv" required />    
+                                @if($errors->has('nome'))
+                                    <div class="error">{{ $errors->first('nome') }}</div>
+                                @endif
+                            </div>
+                        </div> 
+                        
+                        <div class="col-md-2">
+                            <div class="form-group @if($errors->has('password')) has-error @endif ">
+                                <label for="fname">Senha: <span class="red normal">*</span></label>
+                                <input type="password" class="form-control" placeholder="Senha" name="password" value="{{old('password')}}" required />    
+                                @if($errors->has('password'))
+                                    <div class="error">{{ $errors->first('password') }}</div>
+                                @endif
+                            </div>
+                        </div> 
+                        <div class="col-md-3">
+                            <div class="form-group @if($errors->has('email')) has-error @endif ">
+                                <label for="fname">Email: <span class="red normal"></span></label>
+                                <input type="email" class="form-control" placeholder="Email" name="email" value="{{old('email')}}"   />    
+                                @if($errors->has('email'))
+                                    <div class="error">{{ $errors->first('email') }}</div>
+                                @endif
+                            </div>
+                        </div> 
+                    </div>
+                    <div class="row">
+                        
+                        <div class="col-md-2">
+                            <div class="form-group @if($errors->has('sexo')) has-error @endif ">
+                                <label for="fname">Sexo: <span class="red normal"> *</span></label>
+                                <select class="form-control" name="sexo" required >
+                                    <option value="">SELECIONE</option>
+                                    <option value="F" @if(old('sexo')=='F') selected @endif >FEMININO</option>
+                                    <option value="M" @if(old('sexo')=='M') selected @endif>MASCULINO</option> 
+                                </select>
+                                @if($errors->has('email'))
+                                    <div class="error">{{ $errors->first('sexo') }}</div>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group @if($errors->has('celular')) has-error @endif ">
+                                <label for="fname">Celular: <span class="red normal"> </span></label>
+                                <input type="text" class="form-control" placeholder="Celular" name="celular" value="{{old('celular')}}"   />    
+                                @if($errors->has('celular'))
+                                    <div class="error">{{ $errors->first('celular') }}</div>
+                                @endif
+                            </div>
+                        </div>  
+                        
+                        <div class="col-md-3">
+                            <div class="form-group @if($errors->has('oficina')) has-error @endif ">
+                                <label for="fname">Oficina: <span class="red normal"> *</span></label>
+                                <select class="form-control" name="oficina" required  >
+                                    <option value="">SELECIONE</option> 
+                                    @foreach($oficina as $key => $val)
+                                        <option value="{{$val->cd_oficina}}">{{$val->ds_oficina}}</option>
+                                    @endforeach
+                                </select>
+                                @if($errors->has('oficina'))
+                                    <div class="error">{{ $errors->first('oficina') }}</div>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group @if($errors->has('func')) has-error @endif ">
+                                <label for="fname">Funcionario: <span class="red normal"> *</span></label>
+                                <select class="form-control" name="func" required >
+                                    <option value="">SELECIONE</option> 
+                                    @foreach($func as $key => $val)
+                                        <option value="{{$val->cd_func}}">{{$val->nm_func}}</option>
+                                    @endforeach
+                                </select>
+                                @if($errors->has('func'))
+                                    <div class="error">{{ $errors->first('func') }}</div>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-10">
+                            <table class="table table-striped" style="margin-bottom: 0">
+                                <thead>
+                                    <tr class="active">
+                                        <th>Página</th>
+
+                                        <th>Permissões</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+
+                                    @foreach ($permissoes as $tela)
+                                            
+                                        <tr>
+                                            <td>{{ $tela->cd_permissao }}</td>
+
+                                            <td> 
+                                                <div style="display: flex">
+                                                    
+                                                    @if(strpos($tela->opcao, 'ver') !== false)
+                                                        <div class="checkbox" style="margin: 0">
+                                                            <label>
+                                                                <div class="checker">
+                                                                    <span>
+                                                                        <input type="checkbox" name="permissoes[{{ $tela->cd_permissao }}][]" value="ver" />
+                                                                    </span>
+                                                                </div> Ver
+                                                            </label>
+                                                        </div>  
+                                                    @endif
+
+                                                    @if(strpos($tela->opcao, 'criar') !== false)
+                                                        <div class="checkbox" style="margin: 0">
+                                                            <label>
+                                                                <div class="checker">
+                                                                    <span>
+                                                                        <input type="checkbox" name="permissoes[{{ $tela->cd_permissao }}][]" value="criar" />
+                                                                    </span>
+                                                                </div> Criar/Editar
+                                                            </label>
+                                                        </div> 
+                                                    @endif
+                                                    
+                                                    @if(strpos($tela->opcao, 'excluir') !== false)
+                                                        <div class="checkbox" style="margin: 0">
+                                                            <label>
+                                                                <div class="checker">
+                                                                    <span>
+                                                                        <input type="checkbox" name="permissoes[{{ $tela->cd_permissao }}][]" value="excluir" />
+                                                                    </span>
+                                                                </div> Excluir
+                                                            </label>
+                                                        </div>
+                                                    @endif
+
+                                                    @if(strpos($tela->opcao, 'detalhes') !== false)
+                                                        <div class="checkbox" style="margin: 0">
+                                                            <label>
+                                                                <div class="checker">
+                                                                    <span>
+                                                                        <input type="checkbox" name="permissoes[{{ $tela->cd_permissao }}][]" value="detalhes" />
+                                                                    </span>
+                                                                </div> Detalhes
+                                                            </label>
+                                                        </div>
+                                                    @endif
+
+                                                    
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                    @endforeach
+ 
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel-footer">
+                    <button class="btn btn-info"> <i class="fa fa-fw fa-check-square-o"></i> Cadastrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <x-slot name="scripts">
+        <script src="{{ asset('js/acma/usuarios.js') }}"></script>
+    </x-slot>
+
+</x-layout.acma.layout>

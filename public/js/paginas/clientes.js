@@ -1,5 +1,4 @@
 /******/ (() => { // webpackBootstrap
-var __webpack_exports__ = {};
 /*!******************************************!*\
   !*** ./resources/js/paginas/clientes.js ***!
   \******************************************/
@@ -287,7 +286,7 @@ Alpine.data('app', function () {
       this.inputFormHistorico = null;
     },
     excluirHistorico: function excluirHistorico(cdHistorico) {
-      var _this10 = this;
+      var _this0 = this;
       Swal.fire({
         title: 'Confirmação',
         text: "Tem certeza que deseja remover esse historico?",
@@ -300,15 +299,15 @@ Alpine.data('app', function () {
       }).then(function (result) {
         if (result.isConfirmed) {
           axios["delete"]("".concat(API_URL, "/historico-cliente/").concat(cdHistorico)).then(function (res) {
-            var indexHistorico = _this10.historicosCliente.findIndex(function (historico) {
+            var indexHistorico = _this0.historicosCliente.findIndex(function (historico) {
               return historico.cd_historico == cdHistorico;
             });
-            _this10.historicosCliente.splice(indexHistorico, 1);
+            _this0.historicosCliente.splice(indexHistorico, 1);
             toastr['success'](res.data.message);
           })["catch"](function (err) {
             return parseErrorsAPI(err.response.data.errors);
           })["finally"](function () {
-            return _this10.loadingBoletoNegociacao = false;
+            return _this0.loadingBoletoNegociacao = false;
           });
         }
       });

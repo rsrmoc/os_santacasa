@@ -1,5 +1,8 @@
 {
     "/js/app.js": "/js/app.js",
+    "/js/acma/home.js": "/js/acma/home.js",
+    "/js/acma/usuarios.js": "/js/acma/usuarios.js",
+    "/js/acma/chamados.js": "/js/acma/chamados.js",
     "/js/paginas/cadastro.js": "/js/paginas/cadastro.js",
     "/js/paginas/controle.js": "/js/paginas/controle.js",
     "/js/paginas/clientes.js": "/js/paginas/clientes.js",

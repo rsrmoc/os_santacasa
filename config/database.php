@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'mysql'),
+    'default' => env('DB_CONNECTION_ORACLE', 'oracle'),
 
     /*
     |--------------------------------------------------------------------------
@@ -34,6 +34,22 @@ return [
     */
 
     'connections' => [
+
+        'oracle' => [
+            'driver' => 'oracle',
+            'url' => env('DATABASE_URL'),
+            'host' => env('DB_HOST_ORACLE', '127.0.0.1'),
+            'port' => env('DB_PORT_ORACLE', '3306'),
+            'database' => env('DB_DATABASE_ORACLE', 'forge'),
+            'username' => env('DB_USERNAME_ORACLE', 'forge'),
+            'password' => env('DB_PASSWORD_ORACLE', ''),
+            'unix_socket' => env('DB_SOCKET', ''),
+ 
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'strict' => true,
+            'engine' => null, 
+        ],
 
         'sqlite' => [
             'driver' => 'sqlite',

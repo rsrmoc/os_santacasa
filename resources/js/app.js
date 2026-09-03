@@ -15,6 +15,6 @@ window.parseErrorsAPI = (errors, message = null) => {
     toastr['error'](message);
 };
 
-window.formatDate = (date, format = 'L') => {
+window.formatDate = (date, format = 'DD/MM/YYYY') => {
     return moment(date).format(format);
 };

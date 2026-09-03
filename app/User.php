@@ -12,45 +12,36 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
+    protected $table = 'dbarpsys.users';
+    protected $primaryKey = 'id';
+    public $incrementing = false;
+
     protected $fillable = [
+        'id',
         'name',
         'email',
-        'cd_perfil',
+        'email_user',
         'fone',
         'sexo',
+        'cd_oficina',
+        'cd_funcionario',
+        'sn_admin',
         'remember_token',
         'password',
+        'created_at',
+        'updated_at',
+        'dt_password',
+        'user_password',
+        'user_cadastro',
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
-
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
 
     public function permissoes() {
         return $this->hasMany(UserPermission::class, 'user');
     }
 
     public function isPermissao(string $nome, string $permissao) {
+
         if ($this->admin) return true;
 
         $userPermissao = $this->permissoes->where('nome', $nome)->first()->permissoes ?? "";
