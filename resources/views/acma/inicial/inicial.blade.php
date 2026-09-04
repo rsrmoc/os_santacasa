@@ -192,36 +192,40 @@
         <div class="row" style="margin-left: 0px; margin-right: 0px;">
             <div class="col-lg-12 panel"  >
 
-                <div class="table-responsive project-stats">
-                    <table class="table ">
-                        <thead>
-                            <tr>
-                                <th>Funcionario</th>
-                                <th class="text-center">OS em Aberto</th>
-                                <th class="text-center">Aguardando Aprazamento</th>
-                                <th class="text-center">Dentro do Prazo</th>
-                                <th class="text-center">Fora do Prazo</th>
-                                <th class="text-center">Suporte</th>
-                                <th class="text-center">Projetos</th>
-                            </tr>
-                        </thead>
-                        <tbody>
+                <template x-if="headerTable.length > 0">
 
-                            <template x-for="row in headerTable" :key="row.cd_func">
+                    <div class="table-responsive project-stats">
+                        <table class="table ">
+                            <thead>
                                 <tr>
-                                    <th scope="row" x-text="row.nm_func"></th>
-                                    <td class="text-center" ><span class="label label-primary" x-text="row.total_os"></span></td>
-                                    <td class="text-center" ><span class="label label-warning" x-text="row.aguardando_aprazamento"></span></td>
-                                    <td class="text-center" ><span class="label label-info" x-text="row.a_vencer"></span></td>
-                                    <td class="text-center" ><span class="label label-danger" x-text="row.vencido"></span></td>
-                                    <th class="text-center" x-text="row.suporte"></th>
-                                    <th class="text-center" x-text="row.projetos"></th>
+                                    <th>Funcionario</th>
+                                    <th class="text-center">OS em Aberto</th>
+                                    <th class="text-center">Aguardando Aprazamento</th>
+                                    <th class="text-center">Dentro do Prazo</th>
+                                    <th class="text-center">Fora do Prazo</th>
+                                    <th class="text-center">Suporte</th>
+                                    <th class="text-center">Projetos</th>
                                 </tr>
-                            </template>
+                            </thead>
+                            <tbody>
 
-                        </tbody>
-                    </table>
-                </div>
+                                <template x-for="row in headerTable" :key="row.cd_func">
+                                    <tr>
+                                        <th scope="row" x-text="row.nm_func"></th>
+                                        <td class="text-center" ><span class="label label-primary" x-text="row.total_os"></span></td>
+                                        <td class="text-center" ><span class="label label-warning" x-text="row.aguardando_aprazamento"></span></td>
+                                        <td class="text-center" ><span class="label label-info" x-text="row.a_vencer"></span></td>
+                                        <td class="text-center" ><span class="label label-danger" x-text="row.vencido"></span></td>
+                                        <th class="text-center" x-text="row.suporte"></th>
+                                        <th class="text-center" x-text="row.projetos"></th>
+                                    </tr>
+                                </template>
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                </template>
 
             </div>
         </div>

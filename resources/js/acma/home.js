@@ -9,7 +9,7 @@ Alpine.data('app', () => ({
     chart3: null,
     chart4: null,
     loadingCharts: true,
-    headerTable: null,
+    headerTable: [],
     header:{
         card1: "<i class='fa fa-spinner fa-spin'></i>",
         Pcard1: 100,
