@@ -17,6 +17,7 @@ class OsConfig extends Model
         'TP_APRAZAMENTO',
         'DS_APRAZAMENTO',
         'SERV_SUPORTE',
-        'DS_SUPORTE'
+        'DS_SUPORTE',
+        'FUNCIONARIOS'
     ];
 }

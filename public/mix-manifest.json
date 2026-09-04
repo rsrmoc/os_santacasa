@@ -3,11 +3,5 @@
     "/js/acma/home.js": "/js/acma/home.js",
     "/js/acma/usuarios.js": "/js/acma/usuarios.js",
     "/js/acma/chamados.js": "/js/acma/chamados.js",
-    "/js/paginas/cadastro.js": "/js/paginas/cadastro.js",
-    "/js/paginas/controle.js": "/js/paginas/controle.js",
-    "/js/paginas/clientes.js": "/js/paginas/clientes.js",
-    "/js/paginas/negociacoes.js": "/js/paginas/negociacoes.js",
-    "/js/paginas/contas/pagar.js": "/js/paginas/contas/pagar.js",
-    "/js/paginas/contas/receber.js": "/js/paginas/contas/receber.js",
     "/css/app.css": "/css/app.css"
 }

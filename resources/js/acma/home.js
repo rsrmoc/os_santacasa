@@ -9,8 +9,27 @@ Alpine.data('app', () => ({
     chart3: null,
     chart4: null,
     loadingCharts: true,
+    headerTable: null,
+    header:{
+        card1: "<i class='fa fa-spinner fa-spin'></i>",
+        Pcard1: 100,
+        card2: "<i class='fa fa-spinner fa-spin'></i>",
+        Pcard2: 100,
+        card3: "<i class='fa fa-spinner fa-spin'></i>",
+        Pcard3: 100,
+        card4: "<i class='fa fa-spinner fa-spin'></i>",
+        Pcard4: 100,
+        card5: "<i class='fa fa-spinner fa-spin'></i>",
+        Pcard5: 100,
+        card6: "<i class='fa fa-spinner fa-spin'></i>",
+        Pcard6: 100,
+        card7: "<i class='fa fa-spinner fa-spin'></i>",
+        Pcard7: 100,
+    },
 
     init() {
+
+        /*
         this.chart1 = new Chart(chart1Ctx, {
             type: 'line',
             options: {
@@ -65,8 +84,26 @@ Alpine.data('app', () => ({
                 ]
             }
         });
+        */
+        //this.getDataChart1();
+        this.getPage();
+    },
 
-        this.getDataChart1();
+    getPage(){
+        axios.post(`/acma/json/home-json`)
+            .then((res) => {
+                console.log(res.data);
+                this.header.card1 = res.data.header.total ?? '000';
+                this.header.card2 = res.data.header.classificacao ?? '000';
+                this.header.card3 = res.data.header.aprazamento ?? '000';
+                this.header.card4 = res.data.header.dentro_prazo ?? '000';
+                this.header.card5 = res.data.header.fora_prazo ?? '000';
+                this.header.card6 = res.data.header.suporte ?? '000';
+                this.header.card7 = res.data.header.projetos ?? '000';
+                this.headerTable = res.data.table ?? null;
+            })
+            .finally(() => {
+            });
     },
 
     getDataChart1() {

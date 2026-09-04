@@ -15,8 +15,6 @@ use Illuminate\Support\Facades\Route;
 //Route::get('/', [Inicio::class,  'cadastro']);
 route::get('/', [AuthController::class, 'login'])->name('login-action')->middleware('guest');
 
-Route::get('/bot', [Inicio::class,  'bot']);
-Route::get('/bot_pag', [Inicio::class,  'bot_pag']);
 Route::get('/login', [Inicio::class, 'login'])->name('login')->middleware('guest');
 route::post('/login', [AuthController::class, 'login'])->name('login-action')->middleware('guest');
 
@@ -49,6 +47,10 @@ Route::group([
         /* Usuario */
         Route::get('usuario-mv/{usuario}', [Usuarios::class, 'jsonUsuarioMv']);
         Route::post('usuario-store', [Usuarios::class, 'store']);
+
+
+        /* Home */
+        Route::post('home-json', [Inicio::class, 'json']);
 
         /* Chamados */
         Route::post('chamados-json', [Chamados::class, 'json']);
