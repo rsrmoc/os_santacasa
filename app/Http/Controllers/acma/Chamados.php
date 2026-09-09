@@ -49,6 +49,7 @@ class Chamados extends Controller
                 ->whereRaw("ds_localidade not in ('.')")->get();
             $request['tipo_os'] = TipoOs::orderBy('ds_tipo_os')->get();
             $request['oficina'] = Oficina::orderBy('ds_oficina')->whereRaw("cd_oficina in (" . $oficina . ")")->get();
+            $request['oficinas'] = Oficina::orderBy('ds_oficina')->get();
             $request['situacao'] = OsSituacao::orderBy('nm_situacao')->get();
             $request['serv'] = ManuServ::whereRaw("cd_servico in (select cd_servico from dbamv.ofi_serv where cd_oficina in (" . $oficina . "))")
                 ->orderBy('nm_servico')->get();
@@ -79,6 +80,7 @@ class Chamados extends Controller
                 ->whereRaw("ds_localidade not in ('.')")->get();
             $request['tipo_os'] = TipoOs::orderBy('ds_tipo_os')->get();
             $request['oficina'] = Oficina::orderBy('ds_oficina')->whereRaw("cd_oficina in (" . $oficina . ")")->get();
+            $request['oficinas'] = Oficina::orderBy('ds_oficina')->get();
             $request['situacao'] = OsSituacao::orderBy('nm_situacao')->get();
             $request['serv'] = ManuServ::whereRaw("cd_servico in (select cd_servico from dbamv.ofi_serv where cd_oficina in (" . $oficina . "))")
                 ->orderBy('nm_servico')->get();
@@ -109,6 +111,7 @@ class Chamados extends Controller
                 ->whereRaw("ds_localidade not in ('.')")->get();
             $request['tipo_os'] = TipoOs::orderBy('ds_tipo_os')->get();
             $request['oficina'] = Oficina::orderBy('ds_oficina')->whereRaw("cd_oficina in (" . $oficina . ")")->get();
+            $request['oficinas'] = Oficina::orderBy('ds_oficina')->get();
             $request['situacao'] = OsSituacao::orderBy('nm_situacao')->get();
             $request['serv'] = ManuServ::whereRaw("cd_servico in (select cd_servico from dbamv.ofi_serv where cd_oficina in (" . $oficina . "))")
                 ->orderBy('nm_servico')->get();

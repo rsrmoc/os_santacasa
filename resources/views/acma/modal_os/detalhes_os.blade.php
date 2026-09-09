@@ -123,7 +123,7 @@
                                                                 id="id_oficina_classificar" required
                                                                 style="width: 100%;">
                                                                 <option value=""> Selecione a Oficina</option>
-                                                                @foreach ($request['oficina'] as $oficina)
+                                                                @foreach ($request['oficinas'] as $oficina)
                                                                     <option value="{{ $oficina->cd_oficina }}">
                                                                         {{ $oficina->ds_oficina }}
                                                                     </option>

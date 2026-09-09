@@ -28,6 +28,9 @@
         .icon-bar-danger {
             color: #f25656 !important;
         }
+        .table td, .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+            padding: 5px !important;
+        }
     </style>
     <div id="main-wrapper" x-data="app">
 
