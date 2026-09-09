@@ -49,7 +49,7 @@
                                             <tbody>
                                                 <tr>
                                                     <td
-                                                        x-html="'<b>DATA:</b> ' + formatDate(queryModal.dt_pedido, 'DD/MM/YYYY') ">
+                                                        x-html="'<b>DATA:</b> ' + formatDate(queryModal.dt_pedido, 'DD/MM/YYYY HH:mm') ">
                                                     </td>
                                                     <td x-html="'<b>TIPO:</b> ' + queryModal.tab_tipo_os?.ds_tipo_os">
                                                     </td>
