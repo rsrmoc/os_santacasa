@@ -188,7 +188,7 @@
                                                     <div class="col-md-9">
                                                         <div
                                                             class="form-group @if ($errors->has('tipo')) has-error @endif ">
-                                                            <label>Email: <span class="red normal"> *</span></label>
+                                                            <label>Email: <span class="red normal"> *</span> <span class=" text-blue " style="font-style: italic;color: #673AB7;"> &nbsp; &nbsp; Para enviar mais de 1 email usar <b>;</b></span></label>
                                                             <input type="text" class="form-control" name="email"
                                                                 required>
                                                         </div>
