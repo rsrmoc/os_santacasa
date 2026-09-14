@@ -334,6 +334,7 @@ class Chamados extends Controller
 
             $DadosEmail['arquivo_anexo'] = 'anexo.pdf';
             $DadosEmail['email'] = explode(";", $request['email']);
+            $DadosEmail['copias'] = 'informatica@santacasamontesclaros.com.br';
             $DadosEmail['assunto'] = utf8_decode('Setor Informatica - Aprazamento Ordem de Serviço ');
             $DadosEmail['conteudo'] = $Conteudo;
             $email = new EnvioEmail();
