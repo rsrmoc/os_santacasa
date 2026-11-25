@@ -21,9 +21,9 @@ class EnvioEmail {
        $mail->Host = "smtp.gmail.com";
        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
        $mail->Port = 465;  		// A porta 587 deverï¿½ estar aberta em seu servidor
-       $mail->Username = 'enviaremail@santacasamontesclaros.com.br'; // SMTP username
-       $mail->Password = 'xlgqcuhtwnaqmoua'; // SMTP password
-       $mail->From = 'enviaremail@santacasamontesclaros.com.br'; // From
+       $mail->Username = 'naoresponde@santacasamontesclaros.com.br'; // SMTP username
+       $mail->Password = 'upguhuyoppucminw'; // SMTP password
+       $mail->From = 'naoresponde@santacasamontesclaros.com.br'; // From
        $mail->FromName = "Santa Casa de Montes Claros"; // Nome de quem envia o email
        //$mail->addAddress($dados['email'],'Funcionario');
        foreach ($dados['email'] as $email) {
